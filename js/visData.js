@@ -159,6 +159,7 @@ d3.json("data/data2.json",function(thisD){
 //        });
     // use configuration item and data specified to show chart
     myChart.setOption(option);
+    d3.select(".lds-roller").remove();
     
 });
 
