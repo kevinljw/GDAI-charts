@@ -1,10 +1,10 @@
 #main{
-    background: #000;
+    background: #161627;
 }
 .lds-roller {
   display: inline-block;
-  position: absolute;
-  width: 50vw;
+  position: fixed;
+  width: 50%;
   height: 300px;
 }
 .lds-roller div {
