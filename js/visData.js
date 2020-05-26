@@ -13,41 +13,50 @@ var myChart = echarts.init(document.getElementById('main'));
 window.onresize = function () {
     myChart.resize();
 }
-d3.json("data/data2.json",function(thisD){
-    dataset = thisD;
-//    console.log(dataset);
-    var allCountries = dataset[0].map(function(dd,i){
-        return [i,dd[2]]
+d3.csv("data/data6.csv", function(newDataset){
+
+    dataset = newDataset;
+    
+    var nestData =  d3.nest()
+          .key(function(d) { return d.question; })
+          .entries(newDataset);
+    
+    
+    var allCountries = nestData[0].values.map(function(dd,i){
+        return [i,dd["country"]]
     });
-    var allCountriesName = dataset[0].map(function(dd){
-        return dd[2]
+//    console.log(nestData);
+    
+    var allCountriesName = nestData[0].values.map(function(dd){
+        return dd["country"]
     });
     var selectedDict = {};
     
-    
+//    console.log(allCountries);
     
     var seriesData = allCountries.map(function(cd,i){
 //        console.log(d,i*5,(256-i*5));
         selectedDict[cd[1]] = false;
-        var thisCountryData = dataset.map(function(d){
-            return d[i];
-        });
+        var thisCountryData = d3.nest()
+          .key(function(d) { return d["country"]; })
+          .entries(newDataset)[i].values;
         
 //        console.log(thisCountryData);
         
         var all5CateObj = {};
         
         thisCountryData.forEach(function(d,i){
-//            console.log(d[4][1]);
-            if(!(d[3][0] in all5CateObj)){
-                all5CateObj[d[3][0]] = [];
+            
+            if(!(d["facets"] in all5CateObj)){
+                all5CateObj[d["facets"]] = [];
             }
 //            console.log(+d[4][1]);
-            if (isNaN(+d[4][1])) {
-                all5CateObj[d[3][0]].push(0);
+            if (isNaN(+d["score"])) {
+//                console.log(d["score"]);
+                all5CateObj[d["facets"]].push(0);
             }
             else{
-                all5CateObj[d[3][0]].push(+d[4][1]);
+                all5CateObj[d["facets"]].push(+d["score"]);
             }
             
         });
@@ -228,8 +237,8 @@ d3.json("data/data2.json",function(thisD){
     myChart.setOption(option);
     d3.select(".lds-roller").remove();
     
-});
 
+});
 function changeCountry(c,idx){
     console.log(c,idx);
     var thisCountryData = dataset.map(function(d){

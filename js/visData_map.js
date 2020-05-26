@@ -20,27 +20,29 @@ function rank2Value(rankStr){
 }
 
 var allRankObj = {};
-d3.json("data/data2.json", function(dataset){
+d3.csv("data/data6.csv", function(newDataset){
+    var nestData =  d3.nest()
+          .key(function(d) { return d.question; })
+          .entries(newDataset);
     
-    
-    var rankData = dataset[0].map(function(d){
+    var rankData = nestData[0].values.map(function(d){
+        var bandLevel = d["band"].split("_")[1];
         var item = {
-            name: d[2],
-            value: rank2Value(d[1]),
-//            value: d[1],
-            rank: d[1]
+            name: d["country"],
+            value: rank2Value(bandLevel),
+            rank: bandLevel
         }
-        if(allRankObj.hasOwnProperty(d[1])){
-            allRankObj[d[1]]+=1;
+        if(allRankObj.hasOwnProperty(bandLevel)){
+            allRankObj[bandLevel]+=1;
         }
         else{
-            allRankObj[d[1]]=1;
+            allRankObj[bandLevel]=1;
         }
-//        console.log(d[2]+"\n");
+        
         return item
     });
     
-//    console.log(allRankObj);
+//    console.log(dataset, rankData, allRankObj);
     
   echartMap.setOption({
     title: {
@@ -77,7 +79,7 @@ d3.json("data/data2.json", function(dataset){
         {gt: 50, lt: 70, label: "C - "+allRankObj["C"], color: '#90eb9d'},
         {gt: 30, lt: 50, label: "D - "+allRankObj["D"], color: '#f29e2e'},
         {gt: 10, lt: 30, label: "E - "+allRankObj["E"], color: '#e76818'},
-        {lt: 10, label: "F - 0", color: '#d7191c'}
+        {lt: 10, label: "F - "+allRankObj["F"], color: '#d7191c'}
     ],
 //      categories:["A","B","C","D","E","F","None"],
 //      realtime: false,
@@ -103,4 +105,6 @@ d3.json("data/data2.json", function(dataset){
     }]
   });
 
+
+    
 });
