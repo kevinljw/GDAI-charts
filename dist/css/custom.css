@@ -1,0 +1,18 @@
+.qs{
+   background: orange;
+    color: black;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+}
+mark{
+    background: orange;
+    color: black;
+    padding-left: 0.1em;
+   padding-right: 0.1em;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+}
+#question-view-container .badge{
+    font-size: 90%;
+    margin-bottom: 0.5rem;
+}

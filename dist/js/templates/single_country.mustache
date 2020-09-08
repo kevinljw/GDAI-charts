@@ -1,0 +1,89 @@
+<div class="row">
+ <div class="col-6">
+      <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{countryName}}</h3>
+
+            <p>Country</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-globe-europe"></i>
+          </div>
+          
+      </div>
+    
+  </div>
+  <div class="col-6">
+    <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{bandValue}}</h3>
+
+            <p>Band</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+
+    </div>
+   
+  </div>
+  
+  
+</div>
+
+{{#questions}}
+<div class="row mb-2">
+    <div class="col-12">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">
+                  
+                    <h3>{{question}}</h3>
+                </h3>
+            </div>
+            <div class="card-body" >
+
+                <h4>Score: {{score}}</h4>
+                
+                <div class="row">
+                  <div class="col-5 col-sm-3">
+                    <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+                      <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">Assessor Comments</a>
+                      <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">Assessor Sources</a>
+                      <a class="nav-link" id="vert-tabs-c1-tab" data-toggle="pill" href="#vert-tabs-c1" role="tab" aria-controls="vert-tabs-c1" aria-selected="false">Reviewers #1</a>
+                      <a class="nav-link" id="vert-tabs-c2-tab" data-toggle="pill" href="#vert-tabs-c2" role="tab" aria-controls="vert-tabs-c2" aria-selected="false">Reviewers #2</a>
+                      <a class="nav-link" id="vert-tabs-c3-tab" data-toggle="pill" href="#vert-tabs-c3" role="tab" aria-controls="vert-tabs-c3" aria-selected="false">Reviewers #3</a>
+                      <a class="nav-link" id="vert-tabs-c4-tab" data-toggle="pill" href="#vert-tabs-c4" role="tab" aria-controls="vert-tabs-c4" aria-selected="false">Reviewers #4</a>
+                    </div>
+                  </div>
+                  <div class="col-7 col-sm-9">
+                    <div class="tab-content" id="vert-tabs-tabContent">
+                      <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
+                         <h5>{{comment}}</h5>
+                      </div>
+                      <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
+                         <h5>{{source}}</h5>
+                      </div>
+                      <div class="tab-pane fade" id="vert-tabs-c1" role="tabpanel" aria-labelledby="vert-tabs-c1-tab">
+                         <h5>{{c1}}</h5>
+                      </div>
+                      <div class="tab-pane fade" id="vert-tabs-c2" role="tabpanel" aria-labelledby="vert-tabs-c2-tab">
+                         <h5>{{c2}}</h5>
+                      </div>
+                      <div class="tab-pane fade" id="vert-tabs-c3" role="tabpanel" aria-labelledby="vert-tabs-c3-tab">
+                         <h5>{{c3}}</h5>
+                      </div>
+                      <div class="tab-pane fade" id="vert-tabs-c4" role="tabpanel" aria-labelledby="vert-tabs-c4-tab">
+                         <h5>{{c4}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+    <!-- /.card -->
+    </div>
+</div>
+
+{{/questions}}

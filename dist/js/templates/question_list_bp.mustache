@@ -1,0 +1,13 @@
+<div>
+   <p>{{num}} results  ( {{timeDiff}} seconds )</p>
+  <div class="card">
+    <ul class="list-group list-group-flush" style="margin-left: 0px; margin-right: 10px; padding-left: 0px;">
+        {{#questions}}
+          <li class="list-group-item" data-question-id="{{id}}">
+            <h3><a class="text-primary" style="cursor: pointer;">{{id}}</a></h3>
+            <p>{{question}}</p>
+          </li>
+        {{/questions}}
+      </ul>
+  </div>
+</div>
