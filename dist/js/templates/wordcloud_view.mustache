@@ -1,0 +1,20 @@
+<div class="card" style="margin-top: 2.5rem">
+                                           
+        <div class="card-body">
+            <canvas id="wordCanvas"></canvas>
+        </div>
+        <div class="card-footer">
+            <div class="container">
+                <div class="row">
+                    <ol class="col-12" id="wordFreqDiv" class="nav flex-column">
+                        {{#wordFreqArr}}
+                          <li class="nav-item each-word" data-word="{{w}}">
+                            <span class="nav-link">{{w}}<span class="float-right badge bg-info">{{n}}</span>
+                            </span>
+                          </li>
+                        {{/wordFreqArr}}
+                    </ol>
+                </div>
+            </div>
+        </div>
+  </div>

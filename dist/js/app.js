@@ -4,17 +4,70 @@ require([
   'dist/js/elasticlunr.js',
   'text!templates/question_view.mustache',
   'text!templates/question_list.mustache',
+  'text!templates/wordcloud_view.mustache',
   'text!data6.json',
   'text!data6_index.json',
 //  'text!example_data.json',
 //  'text!example_index.json',
-], function (_, Mustache, elasticlunr, questionView, questionList, data, indexDump) {
+], function (_, Mustache, elasticlunr, questionView, questionList, wordcloudView, data, indexDump) {
     
   var renderQuestionList = function (qs, timeDiff) {
     $("#question-list-container")
       .empty()
-      .append(Mustache.to_html(questionList, {questions: qs, num: qs.length, timeDiff: timeDiff}))
-  }
+      .append(Mustache.to_html(questionList, {questions: qs, num: qs.length, timeDiff: timeDiff}));
+    // Create an options object for initialization
+    var options = {
+      workerUrl: '/plugins/wordfreq/wordfreq.worker.js' };
+    // Initialize and run process() function
+    var wordfreq = WordFreq(options).process(JSON.stringify(qs), function (list) {
+      // console.log the list returned in this callback.
+//      console.log(list);
+        if(WordCloud.isSupported){
+            
+            var wordFreqHtml = list.slice(0, Math.min(list.length, 15)).map(function(eachEle){
+                return { w: eachEle[0], n: eachEle[1]}
+            });
+            
+            $("#question-view-container")
+              .empty()
+              .append(Mustache.to_html(wordcloudView, { wordFreqArr: wordFreqHtml}));
+            
+            var wordCtx = $('#wordCanvas')[0].getContext('2d');
+            wordCtx.canvas.height = 350;
+            wordCtx.canvas.width = parseInt(window.innerWidth/3);
+            
+            var weightFactorVal = 0.3;
+            if(list.length>0) weightFactorVal = 100/list[0][1];
+            
+            WordCloud(document.getElementById('wordCanvas'), { 
+                list: list.slice(0, Math.min(list.length, 35)),
+//                drawOutOfBound: false,
+                shrinkToFit: true,
+                origin: [parseInt(wordCtx.canvas.width/2),parseInt(wordCtx.canvas.height/2)],
+                shape: "circle",
+                color: "random-dark",
+//                backgroundColor: "rgba(52, 58, 64, 0.54)",
+//                minSize: 9
+//                gridSize : 10,
+                weightFactor: weightFactorVal,
+                maxRotation: 1,
+                minRotation: -1
+            } );
+//            console.log(list[0][1]);
+            $("#wordFreqDiv .each-word").on("click",function(t){
+                  $('#search-form input').val($(this).attr("data-word"));
+                  idxSearch();
+            });
+            
+        }
+        else{
+            console.log("WordCloud is Not Supported");
+        }
+        
+    });
+  };
+    
+  
 
   var renderQuestionView = function (text2Show) {
     $("#question-view-container")
@@ -25,6 +78,9 @@ require([
     var instance = new Mark(context);
     var queryStr = $('input').val();
     instance.mark(queryStr);
+    
+   
+    
   }
 
   window.profile = function (term) {

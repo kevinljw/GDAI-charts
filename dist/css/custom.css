@@ -16,3 +16,16 @@ mark{
     font-size: 90%;
     margin-bottom: 0.5rem;
 }
+#wordCanvas{
+    width:100%; 
+    height:100%; 
+    margin:0px;
+/*    margin-top: 2.5rem;*/
+}
+#wordFreqDiv{
+    margin-left: 1.5rem;
+}
+#wordFreqDiv .each-word:hover{
+    background: #fff;
+    cursor: pointer;
+}
