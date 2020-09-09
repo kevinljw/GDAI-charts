@@ -172,7 +172,7 @@ require([
         return false;
       }
   });
-  $("#button-search").on("click",idxSearch);
+  $("#button-search").on("click touchstart",idxSearch);
     
   $('#search-form input').bind('keyup', debounce(function () {
     if ($(this).val() < 2) return;
@@ -181,7 +181,7 @@ require([
   }));
 
   var subLength = 200;
-  $("#question-list-container").delegate('tbody>tr', 'click', function () {
+  $("#question-list-container").delegate('tbody>tr', 'click touchstart', function () {
     var li = $(this)
     var id = li.data('question-id');
     var queryStr = $('input').val();
