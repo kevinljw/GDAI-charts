@@ -1,3 +1,6 @@
+require.config({
+    waitSeconds: 0
+});
 require([
   'dist/js/jquery.js',
   'dist/js/mustache.js',
