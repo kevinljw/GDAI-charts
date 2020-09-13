@@ -2,16 +2,61 @@ require([
   'dist/js/jquery.js',
   'dist/js/mustache.js',
   'text!templates/single_question.mustache',
+  'text!templates/wordcloud_view.mustache',
   'text!data6.json',
 //  'text!example_data.json',
 //  'text!example_index.json',
-], function (_, Mustache, singleQuestion, data) {
+], function (_, Mustache, singleQuestion, wordcloudView, data) {
     
     var renderQuestionList = function (qs) {
         $("#single-question-show")
           .empty()
           .append(Mustache.to_html(singleQuestion, qs));
+        
         markContent();
+        var options = {
+            workerUrl: '/plugins/wordfreq/wordfreq.worker.js' };
+        
+        var wordfreq = WordFreq(options).process(JSON.stringify(qs), function (list) {
+            if(WordCloud.isSupported){
+
+                var wordFreqHtml = list.slice(0, Math.min(list.length, 15)).map(function(eachEle){
+                    return { w: eachEle[0], n: eachEle[1]}
+                });
+
+                $("#question-view-container")
+                  .empty()
+                  .append(Mustache.to_html(wordcloudView, { wordFreqArr: wordFreqHtml}));
+
+                var wordCtx = $('#wordCanvas')[0].getContext('2d');
+                wordCtx.canvas.height = 450;
+                wordCtx.canvas.width = parseInt(window.innerWidth);
+
+                var weightFactorVal = 0.3;
+                if(list.length>0) weightFactorVal = 100/list[0][1];
+
+                WordCloud(document.getElementById('wordCanvas'), { 
+                    list: list.slice(0, Math.min(list.length, 35)),
+    //                drawOutOfBound: false,
+                    shrinkToFit: true,
+                    origin: [parseInt(wordCtx.canvas.width/2),parseInt(wordCtx.canvas.height/2)],
+                    shape: "square",
+                    color: "random-dark",
+    //                backgroundColor: "rgba(52, 58, 64, 0.54)",
+    //                minSize: 9
+    //                gridSize : 10,
+                    weightFactor: weightFactorVal,
+                    maxRotation: 1,
+                    minRotation: -1
+                } );
+
+            }
+            else{
+                console.log("WordCloud is Not Supported");
+            }
+        
+        });
+        
     };
     var markContent = function () {
       
