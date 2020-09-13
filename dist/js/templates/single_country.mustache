@@ -47,33 +47,38 @@
                 
                 <div class="row">
                   <div class="col-5 col-sm-3">
-                    <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-                      <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">Assessor Comments</a>
-                      <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">Assessor Sources</a>
-                      <a class="nav-link" id="vert-tabs-c1-tab" data-toggle="pill" href="#vert-tabs-c1" role="tab" aria-controls="vert-tabs-c1" aria-selected="false">Reviewers #1</a>
-                      <a class="nav-link" id="vert-tabs-c2-tab" data-toggle="pill" href="#vert-tabs-c2" role="tab" aria-controls="vert-tabs-c2" aria-selected="false">Reviewers #2</a>
-                      <a class="nav-link" id="vert-tabs-c3-tab" data-toggle="pill" href="#vert-tabs-c3" role="tab" aria-controls="vert-tabs-c3" aria-selected="false">Reviewers #3</a>
-                      <a class="nav-link" id="vert-tabs-c4-tab" data-toggle="pill" href="#vert-tabs-c4" role="tab" aria-controls="vert-tabs-c4" aria-selected="false">Reviewers #4</a>
+                    <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab-{{qn}}" role="tablist" aria-orientation="vertical">
+                      <a class="nav-link active" id="vert-tabs-home-tab-{{qn}}" data-toggle="pill" href="#vert-tabs-home-{{qn}}" role="tab" aria-controls="vert-tabs-home-{{qn}}" aria-selected="true">Assessor Comments</a>
+                      
+                      <a class="nav-link" id="vert-tabs-profile-tab-{{qn}}" data-toggle="pill" href="#vert-tabs-profile-{{qn}}" role="tab" aria-controls="vert-tabs-profile-{{qn}}" aria-selected="false">Assessor Sources</a>
+                      
+                      <a class="nav-link" id="vert-tabs-c1-tab-{{qn}}" data-toggle="pill" href="#vert-tabs-c1-{{qn}}" role="tab" aria-controls="vert-tabs-c1-{{qn}}" aria-selected="false">Reviewers #1</a>
+                      
+                      <a class="nav-link" id="vert-tabs-c2-tab-{{qn}}" data-toggle="pill" href="#vert-tabs-c2-{{qn}}" role="tab" aria-controls="vert-tabs-c2-{{qn}}" aria-selected="false">Reviewers #2</a>
+                      
+                      <a class="nav-link" id="vert-tabs-c3-tab-{{qn}}" data-toggle="pill" href="#vert-tabs-c3-{{qn}}" role="tab" aria-controls="vert-tabs-c3-{{qn}}" aria-selected="false">Reviewers #3</a>
+                      
+                      <a class="nav-link" id="vert-tabs-c4-tab-{{qn}}" data-toggle="pill" href="#vert-tabs-c4-{{qn}}" role="tab" aria-controls="vert-tabs-c4-{{qn}}" aria-selected="false">Reviewers #4</a>
                     </div>
                   </div>
                   <div class="col-7 col-sm-9">
-                    <div class="tab-content" id="vert-tabs-tabContent">
-                      <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
+                    <div class="tab-content" id="vert-tabs-tabContent-{{qn}}">
+                      <div class="tab-pane text-left fade show active" id="vert-tabs-home-{{qn}}" role="tabpanel" aria-labelledby="vert-tabs-home-tab-{{qn}}">
                          <h5>{{comment}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
+                      <div class="tab-pane fade" id="vert-tabs-profile-{{qn}}" role="tabpanel" aria-labelledby="vert-tabs-profile-tab-{{qn}}">
                          <h5>{{source}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c1" role="tabpanel" aria-labelledby="vert-tabs-c1-tab">
+                      <div class="tab-pane fade" id="vert-tabs-c1-{{qn}}" role="tabpanel" aria-labelledby="vert-tabs-c1-tab-{{qn}}">
                          <h5>{{c1}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c2" role="tabpanel" aria-labelledby="vert-tabs-c2-tab">
+                      <div class="tab-pane fade" id="vert-tabs-c2-{{qn}}" role="tabpanel" aria-labelledby="vert-tabs-c2-tab-{{qn}}">
                          <h5>{{c2}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c3" role="tabpanel" aria-labelledby="vert-tabs-c3-tab">
+                      <div class="tab-pane fade" id="vert-tabs-c3-{{qn}}" role="tabpanel" aria-labelledby="vert-tabs-c3-tab-{{qn}}">
                          <h5>{{c3}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c4" role="tabpanel" aria-labelledby="vert-tabs-c4-tab">
+                      <div class="tab-pane fade" id="vert-tabs-c4-{{qn}}" role="tabpanel" aria-labelledby="vert-tabs-c4-tab-{{qn}}">
                          <h5>{{c4}}</h5>
                       </div>
                     </div>
