@@ -47,27 +47,17 @@
        
         
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper row">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-               
-                <div class="container" id="single-question-show">
-                   
-          
-                        
-                </div><!-- /.container-fluid -->
-                
-                <div class="container" id='question-view-container'>
-
-
-
-                </div>
-    
+            <section class="col-6" id="question-a-show">
+                <div class="container single-question"></div>
+                <div class="container single-wordcloud"></div>
             </section>
 
             <!-- Main content -->
-            <section class="content">
-            
+            <section class="col-6" id="question-b-show">
+                <div class="container single-question"></div>
+                <div class="container single-wordcloud"></div>
                
             </section>
             <!-- /.content -->
@@ -104,5 +94,5 @@
     <script src="plugins/mark/mark.min.js"></script>
     <script src="plugins/wordfreq/wordfreq.js"></script>
     <script src="plugins/wordcloud2/wordcloud2.js"></script>
-    <script data-main="dist/js/showData.js" src="dist/js/require.js"></script>
+    <script data-main="dist/js/showComp.js" src="dist/js/require.js"></script>
 </body></html>

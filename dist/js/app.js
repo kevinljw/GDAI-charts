@@ -114,8 +114,8 @@ require([
 //  console.log(JSON.parse(data));  
   var questions = JSON.parse(data).map(function (q) {
     return {
-      id: "Q"+q.question.substring(0, 2)+"."+q.country,
-      qn: q.question.substring(0, 2),
+      id: "Q"+q.question.substring(0, q.question.indexOf("."))+"."+q.country,
+      qn: q.question.substring(0, q.question.indexOf(".")),
       question: q.question,
       comment: q.ac,
       source: q.as,

@@ -29,3 +29,14 @@ mark{
     background: #fff;
     cursor: pointer;
 }
+#plus-btn{
+    font-size: 2em;
+    line-height: 2.5rem;
+    color: #ccc;
+    cursor: pointer;
+    text-align: center;
+    width: 6rem;
+}
+#plus-btn:hover{
+     font-size: 2.2em;
+}

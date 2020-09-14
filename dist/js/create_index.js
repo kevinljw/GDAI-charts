@@ -23,7 +23,8 @@ fs.readFile('./'+fileName+'.json', function (err, data) {
 
   var questions = raw.map(function (q) {
     return {
-      id: "Q"+q.question.substring(0, 2)+"."+q.country,
+      id: "Q"+q.question.substring(0, q.question.indexOf("."))+"."+q.country,
+      qn: q.question.substring(0, q.question.indexOf(".")),
       question: q.question,
       comment: q.ac,
       source: q.as,

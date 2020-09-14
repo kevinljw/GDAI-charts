@@ -1,8 +1,9 @@
+
 <div class="row">
   <div class="col-md-3 col-6">
     <div class="small-box bg-success">
           <div class="inner">
-            <h3>{{band}}</h3>
+            <h3>{{thisQues.band}}</h3>
 
             <p>Band</p>
           </div>
@@ -10,7 +11,7 @@
             <i class="fas fa-shield-alt"></i>
           </div>
           <a href="#" class="small-box-footer">
-            See All {{band}} Band &nbsp;<i class="fas fa-arrow-circle-right"></i>
+            See All {{thisQues.band}} Band &nbsp;<i class="fas fa-arrow-circle-right"></i>
           </a>
     </div>
    
@@ -18,15 +19,15 @@
   <div class="col-md-3 col-6">
       <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{country}}</h3>
+            <h3>{{thisQues.country}}</h3>
 
             <p>Country</p>
           </div>
           <div class="icon">
             <i class="fas fa-globe-europe"></i>
           </div>
-          <a href="country.html?c={{country}}" target="_new" class="small-box-footer">
-            See All {{country}} &nbsp;<i class="fas fa-arrow-circle-right"></i>
+          <a href="country.html?c={{thisQues.country}}" target="_new" class="small-box-footer">
+            See All {{thisQues.country}} &nbsp;<i class="fas fa-arrow-circle-right"></i>
           </a>
       </div>
     
@@ -35,7 +36,7 @@
   <div class="col-md-3 col-6">
     <div class="small-box bg-danger">
           <div class="inner">
-            <h3>{{facets}}</h3>
+            <h3>{{thisQues.facets}}</h3>
 
             <p>Risk Area</p>
           </div>
@@ -43,7 +44,7 @@
             <i class="fas fa-layer-group"></i>
           </div>
           <a href="#" class="small-box-footer">
-            See All {{facets}} &nbsp;<i class="fas fa-arrow-circle-right"></i>
+            See All {{thisQues.facets}} &nbsp;<i class="fas fa-arrow-circle-right"></i>
           </a>
       </div>
     
@@ -52,7 +53,7 @@
   <div class="col-md-3 col-6">
      <div class="small-box bg-warning">
           <div class="inner">
-            <h3>{{score}}</h3>
+            <h3>{{thisQues.score}}</h3>
 
             <p>Score</p>
           </div>
@@ -60,63 +61,95 @@
             <i class="fas fa-star"></i>
           </div>
           <a href="#" class="small-box-footer">
-            See All Score: {{score}} &nbsp;<i class="fas fa-arrow-circle-right"></i>
+            See All Score: {{thisQues.score}} &nbsp;<i class="fas fa-arrow-circle-right"></i>
           </a>
       </div>
     
   </div>
   <!-- /.col -->
 </div>
+
 <div class="row mb-2">
     <div class="col-12">
+         
         <div class="card card-primary card-outline" id="question-view">
+        
+             
             <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-edit"></i>
-                    Question
-                </h3>
-            </div>
-            <div class="card-body" >
+                <h3 class="card-title col-sm-9">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="q-select" class="col-sm-6">Question:</label>
+                            <select class="form-control col-sm-12" name="q-select" id="q-select">
+                                {{#qNum}}
+                                    <option value="{{.}}">Q-{{.}}</option>
+                                {{/qNum}}
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="c-select" class="col-sm-6">Country:</label>
+                            <select class="form-control col-sm-12" name="c-select" id="c-select">
+                                {{#countryName}}
+                                    <option value="{{.}}">{{.}}</option>
+                                {{/countryName}}
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="plus-btn" class="col-sm-6">Compare:</label>
+                             <div id="plus-btn">
+                                <i class="fas fa-plus-circle"></i>
 
-                <h4>{{question}}</h4>
+                            </div>
+                        </div>
+                       
+                     </div>
+                </h3>
+                
+            </div>
+            
+            <div class="card-body" >
+                
+                <h4>{{thisQues.question}}</h4>
                 <br>
                 
                 <div class="row">
                   <div class="col-5 col-sm-3">
                     <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-                      <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">Assessor Comments</a>
-                      <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">Assessor Sources</a>
-                      <a class="nav-link" id="vert-tabs-c1-tab" data-toggle="pill" href="#vert-tabs-c1" role="tab" aria-controls="vert-tabs-c1" aria-selected="false">Reviewers #1</a>
-                      <a class="nav-link" id="vert-tabs-c2-tab" data-toggle="pill" href="#vert-tabs-c2" role="tab" aria-controls="vert-tabs-c2" aria-selected="false">Reviewers #2</a>
-                      <a class="nav-link" id="vert-tabs-c3-tab" data-toggle="pill" href="#vert-tabs-c3" role="tab" aria-controls="vert-tabs-c3" aria-selected="false">Reviewers #3</a>
-                      <a class="nav-link" id="vert-tabs-c4-tab" data-toggle="pill" href="#vert-tabs-c4" role="tab" aria-controls="vert-tabs-c4" aria-selected="false">Reviewers #4</a>
+                      <a class="nav-link active" id="vert-tabs-home-tab-{{thisQues.qn}}-{{thisQues.country}}" data-toggle="pill" href="#vert-tabs-home-{{thisQues.qn}}-{{thisQues.country}}" role="tab" aria-controls="vert-tabs-home-{{thisQues.qn}}-{{thisQues.country}}" aria-selected="true">Assessor Comments</a>
+                      
+                      <a class="nav-link" id="vert-tabs-profile-tab-{{thisQues.qn}}-{{thisQues.country}}" data-toggle="pill" href="#vert-tabs-profile-{{thisQues.qn}}-{{thisQues.country}}" role="tab" aria-controls="vert-tabs-profile-{{thisQues.qn}}-{{thisQues.country}}" aria-selected="false">Assessor Sources</a>
+                      <a class="nav-link" id="vert-tabs-c1-tab-{{thisQues.qn}}-{{thisQues.country}}" data-toggle="pill" href="#vert-tabs-c1-{{thisQues.qn}}-{{thisQues.country}}" role="tab" aria-controls="vert-tabs-c1-{{thisQues.qn}}-{{thisQues.country}}" aria-selected="false">Reviewers #1</a>
+                      <a class="nav-link" id="vert-tabs-c2-tab-{{thisQues.qn}}-{{thisQues.country}}" data-toggle="pill" href="#vert-tabs-c2-{{thisQues.qn}}-{{thisQues.country}}" role="tab" aria-controls="vert-tabs-c2-{{thisQues.qn}}-{{thisQues.country}}" aria-selected="false">Reviewers #2</a>
+                      <a class="nav-link" id="vert-tabs-c3-tab-{{thisQues.qn}}-{{thisQues.country}}" data-toggle="pill" href="#vert-tabs-c3-{{thisQues.qn}}-{{thisQues.country}}" role="tab" aria-controls="vert-tabs-c3-{{thisQues.qn}}-{{thisQues.country}}" aria-selected="false">Reviewers #3</a>
+                      <a class="nav-link" id="vert-tabs-c4-tab-{{thisQues.qn}}-{{thisQues.country}}" data-toggle="pill" href="#vert-tabs-c4-{{thisQues.qn}}-{{thisQues.country}}" role="tab" aria-controls="vert-tabs-c4-{{thisQues.qn}}-{{thisQues.country}}" aria-selected="false">Reviewers #4</a>
                     </div>
                   </div>
                   <div class="col-7 col-sm-9">
-                    <div class="tab-content" id="vert-tabs-tabContent">
-                      <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
-                         <h5>{{comment}}</h5>
+                    <div class="tab-content" id="vert-tabs-tabContent-{{thisQues.qn}}-{{thisQues.country}}">
+                      <div class="tab-pane text-left fade show active" id="vert-tabs-home-{{thisQues.qn}}-{{thisQues.country}}" role="tabpanel" aria-labelledby="vert-tabs-home-tab-{{thisQues.qn}}-{{thisQues.country}}">
+                         <h5>{{thisQues.comment}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
-                         <h5>{{source}}</h5>
+                      <div class="tab-pane fade" id="vert-tabs-profile-{{thisQues.qn}}-{{thisQues.country}}" role="tabpanel" aria-labelledby="vert-tabs-profile-tab-{{thisQues.qn}}-{{thisQues.country}}">
+                         <h5>{{thisQues.source}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c1" role="tabpanel" aria-labelledby="vert-tabs-c1-tab">
-                         <h5>{{c1}}</h5>
+                      <div class="tab-pane fade" id="vert-tabs-c1-{{thisQues.qn}}-{{thisQues.country}}" role="tabpanel" aria-labelledby="vert-tabs-c1-tab-{{thisQues.qn}}-{{thisQues.country}}">
+                         <h5>{{thisQues.c1}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c2" role="tabpanel" aria-labelledby="vert-tabs-c2-tab">
-                         <h5>{{c2}}</h5>
+                      <div class="tab-pane fade" id="vert-tabs-c2-{{thisQues.qn}}-{{thisQues.country}}" role="tabpanel" aria-labelledby="vert-tabs-c2-tab-{{thisQues.qn}}-{{thisQues.country}}">
+                         <h5>{{thisQues.c2}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c3" role="tabpanel" aria-labelledby="vert-tabs-c3-tab">
-                         <h5>{{c3}}</h5>
+                      <div class="tab-pane fade" id="vert-tabs-c3-{{thisQues.qn}}-{{thisQues.country}}" role="tabpanel" aria-labelledby="vert-tabs-c3-tab-{{thisQues.qn}}-{{thisQues.country}}">
+                         <h5>{{thisQues.c3}}</h5>
                       </div>
-                      <div class="tab-pane fade" id="vert-tabs-c4" role="tabpanel" aria-labelledby="vert-tabs-c4-tab">
-                         <h5>{{c4}}</h5>
+                      <div class="tab-pane fade" id="vert-tabs-c4-{{thisQues.qn}}-{{thisQues.country}}" role="tabpanel" aria-labelledby="vert-tabs-c4-tab-{{thisQues.qn}}-{{thisQues.country}}">
+                         <h5>{{thisQues.c4}}</h5>
                       </div>
                     </div>
                   </div>
                 </div>
 
             </div>
+         
         </div>
     <!-- /.card -->
     </div>

@@ -8,27 +8,24 @@ require([
 //  'text!example_index.json',
 ], function (_, Mustache, singleQuestion, wordcloudView, data) {
     
-    var renderQuestionList = function (qs,qn,co) {
-        $("#single-question-show")
+    var renderQuestionList = function (qs, id_str, qn, co) {
+//        console.log(id_str+">.single-question");
+        $(id_str+">.single-question")
           .empty()
           .append(Mustache.to_html(singleQuestion, {thisQues: qs, qNum: qn, countryName: co}));
         
-        $("#q-select option[value='" + qs.qn + "']").attr("selected", true);
-        $("#c-select option[value='" + qs.country + "']").attr("selected", true);
-        $("#plus-btn").on("click", function() {
-            var newId = "Q"+$("#q-select").val()+"."+$("#c-select").val();
-//            console.log("/comp.html?q="+newId)
-             location.href = "/comp.html?q="+newId;
-        });
-        $("#q-select,#c-select").on("change", function(){
+        $(id_str+" #q-select option[value='" + qs.qn + "']").attr("selected", true);
+        $(id_str+" #c-select option[value='" + qs.country + "']").attr("selected", true);
+
+        $(id_str+" #q-select,"+id_str+" #c-select").on("change", function(){
             
-            var newId = "Q"+$("#q-select").val()+"."+$("#c-select").val();
+            var newId = "Q"+$(id_str+" #q-select").val()+"."+$(id_str+" #c-select").val();
             var results = questions.filter(function (eachQ) { return newId === eachQ.id })[0];
-            renderQuestionList(results,uniqueQues,uniqueCoun);
+            renderQuestionList(results, id_str, uniqueQues,uniqueCoun);
         });
         
         
-        markContent();
+        markContent(id_str);
         var options = {
             workerUrl: '/plugins/wordfreq/wordfreq.worker.js' };
         
@@ -39,18 +36,18 @@ require([
                     return { w: eachEle[0], n: eachEle[1]}
                 });
 
-                $("#question-view-container")
+                $(id_str+" .single-wordcloud")
                   .empty()
                   .append(Mustache.to_html(wordcloudView, { wordFreqArr: wordFreqHtml}));
 
-                var wordCtx = $('#wordCanvas')[0].getContext('2d');
-                wordCtx.canvas.height = 450;
+                var wordCtx = $(id_str+' #wordCanvas')[0].getContext('2d');
+                wordCtx.canvas.height = 600;
                 wordCtx.canvas.width = parseInt(window.innerWidth);
 
                 var weightFactorVal = 0.3;
                 if(list.length>0) weightFactorVal = 100/list[0][1];
 
-                WordCloud(document.getElementById('wordCanvas'), { 
+                WordCloud(document.querySelector(id_str+' #wordCanvas'), { 
                     list: list.slice(0, Math.min(list.length, 35)),
     //                drawOutOfBound: false,
                     shrinkToFit: true,
@@ -73,9 +70,9 @@ require([
         });
         
     };
-    var markContent = function () {
+    var markContent = function (id_str) {
       
-        var context = document.querySelector("#question-view");
+        var context = document.querySelector(id_str+" #question-view");
         var instance = new Mark(context);
         var queryStr = $('#mark-form input[name="mark"]').val();
         instance.unmark({
@@ -120,6 +117,8 @@ require([
     
     var q = getUrlParameter('q');
     if(q==null) q="Q12.Taiwan";
+    var c = getUrlParameter('c');
+    if(c==null) c="Q51.South-Sudan";
     
     var m = getUrlParameter('m');
     if(m==null) m="";
@@ -127,15 +126,17 @@ require([
 
     $('#mark-form').on("submit", function(e) {
           e.preventDefault();
-          markContent();
+          markContent("#question-a-show");
+          markContent("#question-b-show");
     });
-    
-    
 //    console.log(q,m);
     
-    var results = questions.filter(function (eachQ) { return q === eachQ.id })[0];
+    var resultsA = questions.filter(function (eachQ) { return q === eachQ.id })[0];
+    var resultsB = questions.filter(function (eachQ) { return c === eachQ.id })[0];
+    
     var uniqueQues = [...new Set(questions.map(item => item.qn))];
     var uniqueCoun = [...new Set(questions.map(item => item.country))];
 //    console.log(results);
-    renderQuestionList(results,uniqueQues,uniqueCoun);
+    renderQuestionList(resultsA, "#question-a-show", uniqueQues, uniqueCoun);
+    renderQuestionList(resultsB, "#question-b-show", uniqueQues, uniqueCoun);
 });
