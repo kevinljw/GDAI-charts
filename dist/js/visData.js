@@ -121,7 +121,7 @@ d3.csv("/dist/js/data6.csv", function(newDataset){
         backgroundColor: '#f3f3f3',
         title: {
             top: 10,
-            text: '依國別-五構面雷達圖',
+            text: '依國別-五風險領域雷達圖',
             left: 'center',
             textStyle: {
                 color: '#222'
