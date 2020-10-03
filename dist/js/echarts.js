@@ -47510,7 +47510,7 @@ var fixTextCoord = function (mapType, region) {
 */
 
 var geoCoordMap = {
-    'Russia': [100, 60],
+    'Russian-Federation': [100, 60],
     'United States': [-99, 38],
     'United States of America': [-99, 38]
 };

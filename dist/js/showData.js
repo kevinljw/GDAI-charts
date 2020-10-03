@@ -64,6 +64,10 @@ require([
                     maxRotation: 1,
                     minRotation: -1
                 } );
+                $("#wordFreqDiv .each-word").on("click",function(t){
+                    $('#mark-form input[name="mark"]').val($(this).attr("data-word"));
+                     markContent();
+                });
 
             }
             else{
