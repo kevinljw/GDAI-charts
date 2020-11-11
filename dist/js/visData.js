@@ -111,7 +111,7 @@ d3.csv("/dist/js/data6.csv", function(newDataset){
 //    console.log(seriesData);
 
     var indicatorObj = fiveCate.map(function(d){
-        return {name: d, max: 4}
+        return {name: d, max: 3.8}
     });
 
     selectedDict["Taiwan"] = true;
