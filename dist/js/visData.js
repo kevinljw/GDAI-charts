@@ -32,7 +32,7 @@ d3.csv("/dist/js/data6.csv", function(newDataset){
     });
     var selectedDict = {};
     
-//    console.log(allCountries);
+    console.log(allCountries);
     
     var seriesData = allCountries.map(function(cd,i){
 //        console.log(d,i*5,(256-i*5));
