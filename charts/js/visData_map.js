@@ -46,7 +46,7 @@ d3.csv("data/data6.csv", function(newDataset){
     
   echartMap.setOption({
     title: {
-      text: 'GDAI World Map',
+      text: 'GDI World Map',
       subtext: '',
       x: 'center',
       y: 'top',
@@ -87,7 +87,7 @@ d3.csv("data/data6.csv", function(newDataset){
 //      color: ['#087E65', '#26B99A', '#CBEAE3']
     },
     series: [{
-      name: 'GDAI',
+      name: 'GDI',
       type: 'map',
       mapType: 'world',
       roam: false,
